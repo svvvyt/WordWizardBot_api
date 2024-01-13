@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from dictionary_api.views import UserViewSet, WordViewSet, UserWordViewSet
+from dictionary_api.views import UserViewSet, WordViewSet, UserWordViewSet, UserWordListAPIView, UserWordDetailAPIView
 
 
 class BaseRouter(routers.SimpleRouter):
@@ -32,11 +32,15 @@ word_router.register(r'words', WordViewSet, basename='words')
 user_words_router = BaseRouter()
 user_words_router.register(r'user-words', UserWordViewSet, basename='user-words')
 
+router = routers.DefaultRouter()
+router.register(r'user-words', UserWordViewSet, basename='user-words')
+
 urlpatterns = [
     path('api/', include(user_router.urls)),
     path('api/', include(word_router.urls)),
-    path('api/users/<int:user_id>/', include(user_words_router.urls)),
-    path('api/users/<int:user_id>/___/<int:word_id>', include(user_words_router.urls))
+    path('api/', include(user_words_router.urls)),
+    path('api/users/<int:user_id>/user-words/', UserWordListAPIView.as_view(), name='user-words-list'),
+    path('api/users/<int:user_id>/user-words/<int:word_id>/', UserWordDetailAPIView.as_view(), name='user-word-detail')
 
     # path('api/users/', include(user_router.urls)),
     # path('api/users/<int:user_id>/', include(user_router.urls)),
