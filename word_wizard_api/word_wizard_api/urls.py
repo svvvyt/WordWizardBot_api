@@ -33,9 +33,14 @@ user_words_router = BaseRouter()
 user_words_router.register(r'user-words', UserWordViewSet, basename='user-words')
 
 urlpatterns = [
-    path('users/', include(user_router.urls)),
-    path('users/<int:user_id>/', include(user_router.urls)),
-    path('words/', include(word_router.urls)),
-    path('words/<int:word_id>/', include(word_router.urls)),  # 'words/<str:word_text>/' 'words/<int:word_id>/'
-    path('users/<int:user_id>/words/', include(user_words_router.urls)),
+    path('api/', include(user_router.urls)),
+    path('api/', include(word_router.urls)),
+    path('api/users/<int:user_id>/', include(user_words_router.urls)),
+    path('api/users/<int:user_id>/___/<int:word_id>', include(user_words_router.urls))
+
+    # path('api/users/', include(user_router.urls)),
+    # path('api/users/<int:user_id>/', include(user_router.urls)),
+    # path('api/words/', include(word_router.urls)),
+    # path('api/words/<int:word_id>/', include(word_router.urls)),  # 'words/<str:word_text>/' 'words/<int:word_id>/'
+    # path('api/users/<int:user_id>/words/', include(user_words_router.urls)),
 ]

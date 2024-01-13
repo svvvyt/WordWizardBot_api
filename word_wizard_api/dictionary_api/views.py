@@ -1,6 +1,6 @@
 from rest_framework import mixins, viewsets
 
-from .models import User, Word, UserWord
+from .models import Users, Words, UserWords
 from .serializers import UserSerializer, WordSerializer, UserWordSerializer
 
 
@@ -21,15 +21,15 @@ class BaseModelViewSet(mixins.CreateModelMixin,
 
 
 class UserViewSet(BaseModelViewSet):
-    queryset = User.objects.all()
+    queryset = Users.objects.all()
     serializer_class = UserSerializer
 
 
 class WordViewSet(BaseModelViewSet):
-    queryset = Word.objects.all()
+    queryset = Words.objects.all()
     serializer_class = WordSerializer
 
 
 class UserWordViewSet(BaseModelViewSet):
-    queryset = UserWord.objects.all()
+    queryset = UserWords.objects.all()
     serializer_class = UserWordSerializer

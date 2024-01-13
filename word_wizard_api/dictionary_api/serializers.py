@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import User, Word, UserWord
+from .models import Users, Words, UserWords
 
 
 class BaseSerializer(serializers.ModelSerializer):
@@ -10,17 +10,17 @@ class BaseSerializer(serializers.ModelSerializer):
 
 class UserSerializer(BaseSerializer):
     class Meta(BaseSerializer.Meta):
-        model = User
+        model = Users
         fields = "__all__"
 
 
 class WordSerializer(BaseSerializer):
     class Meta(BaseSerializer.Meta):
-        model = Word
+        model = Words
         fields = "__all__"
 
 
 class UserWordSerializer(BaseSerializer):
     class Meta(BaseSerializer.Meta):
-        model = UserWord
+        model = UserWords
         fields = "__all__"

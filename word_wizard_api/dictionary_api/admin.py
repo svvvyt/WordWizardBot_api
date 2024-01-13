@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from .models import User, Word, UserWord
+from .models import Users, Words, UserWords
 
-admin.site.register([User, Word, UserWord])
+admin.site.register([Users, Words, UserWords])
